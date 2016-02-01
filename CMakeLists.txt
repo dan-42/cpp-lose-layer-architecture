@@ -26,5 +26,7 @@ find_package(lib-cpp-pre 1.3.2 REQUIRED)
 include_directories(AFTER ${LIB_CPP_PRE_INCLUDE_DIRS})
 
 
-set(SOURCE_FILES main.cpp)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/src)
+file(GLOB_RECURSE SOURCE_FILES "src/*.cpp")
+
 add_executable(main ${SOURCE_FILES})

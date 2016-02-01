@@ -1,3 +1,9 @@
+//
+// Created by dan on 01.02.16.
+//
+
+#ifndef LOSE_LAYER_ARCHITECTURE_UTIL_HPP
+#define LOSE_LAYER_ARCHITECTURE_UTIL_HPP
 
 
 #include <iostream>
@@ -74,53 +80,7 @@ namespace util {
 } /*namespace util*/
 
 
-typedef std::vector<uint8_t > binary_data;
 
 
 
-
-namespace layer_1 {
-  namespace api {
-    struct who_is {   };
-    struct i_am {  };
-    struct unused { };
-
-    typedef std::function<void(who_is, binary_data)> who_is_received_callback;
-    typedef std::function<void(i_am, binary_data)> i_am_received_callback;
-    typedef std::function<void(unused)> unused_callback;
-  }
-
-  namespace detail {
-
-    using namespace layer_1::api;
-
-    typedef boost::fusion::map<
-      boost::fusion::pair<who_is, who_is_received_callback>,
-      boost::fusion::pair<i_am,   i_am_received_callback>,
-      boost::fusion::pair<unused, unused_callback>
-    > callback_map_type;
-
-  }
-}
-
-int main() {
-
-  util::callback_manager<layer_1::detail::callback_map_type> cm{};
-
-  auto handle_who_is = [](layer_1::api::who_is wi, binary_data ) { std::cout << "got a who_is " << std::endl; };
-  auto handle_i_am   = [](layer_1::api::i_am ia,   binary_data ) { std::cout << "got a i_am " << std::endl; };
-
-  cm.set_callbacks(handle_who_is, handle_i_am);
-
-  layer_1::api::who_is wi{};
-  cm.invoke_callback(wi, binary_data{});
-
-  layer_1::api::i_am ia{};
-  cm.invoke_callback(ia, binary_data{});
-
-  layer_1::api::unused unused{};
-  cm.invoke_callback(unused);
-
-  std::cout << "Hello, World!" << std::endl;
-  return 0;
-}
+#endif //LOSE_LAYER_ARCHITECTURE_UTIL_HPP
