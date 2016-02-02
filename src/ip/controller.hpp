@@ -31,6 +31,10 @@ namespace ip {
 
     }
 
+    void send(api::binary_data data) {
+      std::cout << "ip::controller sending data" << std::endl;
+    }
+
     template<typename... Callbacks>
     void async_receive(Callbacks... callbacks) {
       callback_manager.set_callbacks(callbacks...);

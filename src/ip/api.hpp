@@ -2,8 +2,8 @@
 // Created by dan on 01.02.16.
 //
 
-#ifndef LOSE_LAYER_ARCHITECTURE_API_HPP
-#define LOSE_LAYER_ARCHITECTURE_API_HPP
+#ifndef LOSE_LAYER_ARCHITECTURE_IP_API_HPP
+#define LOSE_LAYER_ARCHITECTURE_IP_API_HPP
 
 #include <vector>
 #include <cstdint>
@@ -34,4 +34,4 @@ namespace ip { namespace api {
     typedef std::function<void(last_fragmented)>              last_fragmented_callback;
 }}
 
-#endif //LOSE_LAYER_ARCHITECTURE_API_HPP
+#endif //LOSE_LAYER_ARCHITECTURE_IP_API_HPP
